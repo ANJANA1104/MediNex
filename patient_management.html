@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediNex - Patient Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .search-form {
+            margin-bottom: 20px;
+        }
+        .search-form input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-form button {
+            width: 80px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .add-patient-form {
+            margin-top: 20px;
+        }
+        .add-patient-form input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .add-patient-form button {
+            width: 80px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .add-patient-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MediNex - Patient Management</h1>
+
+        <!-- Search Patient Form -->
+        <div class="search-form">
+            <input type="text" id="searchInput" placeholder="Search patient by name">
+            <button onclick="searchPatient()">Search</button>
+        </div>
+
+        <!-- Patient Details Table -->
+        <table id="patientTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Patient details will be displayed here -->
+            </tbody>
+        </table>
+
+        <!-- Add New Patient Form -->
+        <div class="add-patient-form">
+            <h2>Add New Patient</h2>
+            <input type="text" id="nameInput" placeholder="Name">
+            <input type="text" id="ageInput" placeholder="Age">
+            <input type="text" id="phoneInput" placeholder="Phone">
+            <button onclick="addPatient()">Add Patient</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to display patient details in the table
+        function displayPatients(patients) {
+            const patientTable = document.getElementById("patientTable");
+            const tbody = patientTable.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = ''; // Clear existing rows
+
+            patients.forEach(patient => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${patient.id}</td>
+                    <td>${patient.name}</td>
+                    <td>${patient.age}</td>
+                    <td>${patient.phone}</td>
+                    <td><button onclick="viewPatientDetails(${patient.id})">View</button></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Function to search for patients by name
+        function searchPatient() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const filteredPatients = patients.filter(patient => patient.name.toLowerCase().includes(searchInput));
+            displayPatients(filteredPatients);
+        }
+
+        // Function to add a new patient
+        function addPatient() {
+            const name = document.getElementById("nameInput").value;
+            const age = document.getElementById("ageInput").value;
+            const phone = document.getElementById("phoneInput").value;
+
+            // Implement code to add patient (e.g., make API call)
+            // After adding patient, you may fetch updated patient list and display it
+        }
+
+        // Function to view patient details (placeholder)
+        function viewPatientDetails(patientId) {
+            // Implement code to display patient details
+        }
+
+        // Initial display of patients (You should fetch patient data from backend)
+        const patients = [
+            { id: 1, name: "John Doe", age: 30, phone: "1234567890" },
+            { id: 2, name: "Jane Smith", age: 25, phone: "9876543210" }
+            // Add more patients as needed
+        ];
+        displayPatients(patients);
+    </script>
+</body>
+</html>
