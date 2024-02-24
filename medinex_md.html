@@ -3,11 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MediNex - Doctor Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+		
+        
+        body {
+            font-family: Arial, Brush Script;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #007bff;
+            background image: url("https://img.hotimg.com/wallpaper.jpeg");
+            
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #doctor-login {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #doctor-login h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #doctor-login label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #doctor-login input[type="email"],
+        #doctor-login input[type="password"],
+        #doctor-login button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        #doctor-login button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #doctor-login button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+         h1 {
+			 font-family: 'Brush Script ';
+            font-size: 64px;
+        }
+    </style>
     <title>nandamma arrived
         
     </title>
 </head>
 <body>
+    	<header>
+    
+    
+   <h1>MediNex</h1>
+</header>
+
+    <main>
+        <section id="doctor-login">
+            <h2>Doctor Login</h2>
+
+            <form id="doctor-login-form">
+                <label for="doctor-email">Email:</label>
+                <input type="email" id="doctor-email" name="doctor-email">
+                <label for="doctor-password">Password:</label>
+                <input type="password" id="doctor-password" name="doctor-password">
+                <button type="submit" onclick="login()">Login</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+       
+    </footer>
+    <script>
+        function login() {
+            console.log() 
+            window.location.href = "patient_management.html";
+
+            return false; 
+        }
+    </script>
+
     
 </body>
 </html>
+
