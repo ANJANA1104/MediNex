@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediNex - Doctor Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, Brush Script;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #doctor-login {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #doctor-login h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #doctor-login label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #doctor-login input[type="email"],
+        #doctor-login input[type="password"],
+        #doctor-login button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        #doctor-login button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #doctor-login button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            font-family: 'Brush Script ';
+            font-size: 64px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MediNex</h1>
+    </header>
+    <main>
+        <section id="doctor-login">
+            <h2>Doctor Login</h2>
+
+            <form id="doctor-login-form">
+                <label for="doctor-email">Email:</label>
+                <input type="email" id="doctor-email" name="doctor-email">
+                <label for="doctor-password">Password:</label>
+                <input type="password" id="doctor-password" name="doctor-password">
+                <button type="submit">Login</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+       
+    </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCvu6gLYKYAnGa1qpgRutpmaZJvp8jK1Is",
+    authDomain: "mdnex-97f90.firebaseapp.com",
+    projectId: "mdnex-97f90",
+    storageBucket: "mdnex-97f90.appspot.com",
+    messagingSenderId: "633619269051",
+    appId: "1:633619269051:web:0fd0ede3d1c4ba95eb309e",
+    measurementId: "G-8DK5NPE3KK"
+  };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        document.getElementById("doctor-login-form").addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('doctor-email').value;
+            const password = document.getElementById('doctor-password').value;
+        
+            auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Authentication successful
+                window.location.href = "patient_management.html";
+                console.log('Doctor logged in:', userCredential.user.email);
+            })
+            .catch((error) => {
+                // Handle authentication errors
+                console.error('Authentication failed:', error.message);
+                alert('Authentication failed. Please check your email and password.');
+            });
+        });
+    </script>
+</body>
+</html>
