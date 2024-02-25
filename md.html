@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, Brush Script;
+            font-family: Arial, 'Brush Script';
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -60,7 +60,7 @@
         }
 
         h1 {
-            font-family: 'Brush Script ';
+            font-family: 'Brush Script';
             font-size: 64px;
         }
     </style>
@@ -78,6 +78,7 @@
                 <input type="email" id="doctor-email" name="doctor-email">
                 <label for="doctor-password">Password:</label>
                 <input type="password" id="doctor-password" name="doctor-password">
+               
                 <button type="submit">Login</button>
             </form>
         </section>
@@ -90,14 +91,14 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyCvu6gLYKYAnGa1qpgRutpmaZJvp8jK1Is",
-    authDomain: "mdnex-97f90.firebaseapp.com",
-    projectId: "mdnex-97f90",
-    storageBucket: "mdnex-97f90.appspot.com",
-    messagingSenderId: "633619269051",
-    appId: "1:633619269051:web:0fd0ede3d1c4ba95eb309e",
-    measurementId: "G-8DK5NPE3KK"
-  };
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            projectId: "your-project-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id",
+            measurementId: "your-measurement-id"
+        };
       
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
