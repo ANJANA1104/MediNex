@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediNex - Patient Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .sf {
+            margin-bottom: 20px;
+        }
+        .sf input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .sf button {
+            width: 80px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .sf button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .apf {
+            margin-top: 20px;
+        }
+        .apf input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .apf button {
+            width: 80px;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .apf button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MediNex - Patient Management</h1>
+
+        <!-- Search Patient Form -->
+        <div class="sf">
+            <input type="text" id="si" placeholder="Search patient by name">
+            <button onclick="sp()">Search</button>
+        </div>
+
+        <!-- Patient Details Table -->
+        <table id="pt">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Patient details will be displayed here -->
+            </tbody>
+        </table>
+
+        <!-- Add New Patient Form -->
+        <div class="apf">
+            <h2>Add New Patient</h2>
+            <form id="addPatientForm" onsubmit="return ap()">
+                <input type="text" id="ni" name="name" placeholder="Name">
+                <input type="text" id="ai" name="age" placeholder="Age">
+                <input type="text" id="pi" name="phone" placeholder="Phone">
+                <button type="submit">Add Patient</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function dp(ps) {
+            const t = document.getElementById("pt");
+            const b = t.getElementsByTagName("tbody")[0];
+            b.innerHTML = '';
+
+            ps.forEach(p => {
+                const r = document.createElement("tr");
+                r.innerHTML = `
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>${p.age}</td>
+                    <td>${p.phone}</td>
+                    <td><button onclick="vpd(${p.id})">View</button></td>
+                `;
+                b.appendChild(r);
+            });
+        }
+
+        function sp() {
+            const i = document.getElementById("si").value.toLowerCase();
+            const fp = patients.filter(p => p.name.toLowerCase().includes(i));
+            dp(fp);
+        }
+
+        function ap() {
+            const form = document.getElementById("addPatientForm");
+            const n = form.elements["name"].value;
+            const a = form.elements["age"].value;
+            const p = form.elements["phone"].value;
+
+            const newPatient = {
+                id: patients.length + 1,
+                name: n,
+                age: a,
+                phone: p
+            };
+            patients.push(newPatient);
+            dp(patients);
+
+            // Reset form fields
+            form.reset();
+
+            // Prevent default form submission
+            return false;
+        }
+
+        const patients = [
+            { id: 1, name: "John Doe", age: 30, phone: "1234567890", medicalHistory: "Patient has a history of allergies." },
+            { id: 2, name: "Jane Smith", age: 25, phone: "9876543210", medicalHistory: "Patient has no significant medical history." }
+        ];
+
+        dp(patients);
+
+        function vpd(pid) {
+            const patient = patients.find(p => p.id === pid);
+            alert(`Patient Details:\nID: ${patient.id}\nName: ${patient.name}\nAge: ${patient.age}\nPhone: ${patient.phone}\nMedical History: ${patient.medicalHistory}`);
+        }
+    </script>
+</body>
+</html>
